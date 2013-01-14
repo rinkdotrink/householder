@@ -7,8 +7,7 @@ public class Householder {
 	public Double[][] a;
 	
 	public Double[][] r;
-	public Double[][] out;
-	public Double[][] ak;
+
 	public Double[] rho;
 	double rhoK = 0.0;
 	double s = 0.0;
@@ -23,9 +22,8 @@ public class Householder {
 	public Householder(Double[][] a){
 		zeilenAnzahlM = a.length;
 		spaltenAnzahlN = a[0].length;
-		this.a = new Double[zeilenAnzahlM][spaltenAnzahlN];
-		this.ak = new Double[zeilenAnzahlM][spaltenAnzahlN]; 
-		this.out = new Double[zeilenAnzahlM][spaltenAnzahlN];
+		
+	
 		this.rho = new Double[zeilenAnzahlM];
 		this.r = new Double[zeilenAnzahlM][spaltenAnzahlN];
 		this.a = a;
@@ -65,17 +63,18 @@ public class Householder {
 	public void iterate(){
 		for(int iteration = 0; iteration < iterationenAnzahlL; iteration++){
 		
-			double beta = 0.0;		
+				
 			int k = iteration;
 			int j = 0;
-		
+			
+			double beta = 0.0;	
 				for(int i = iteration; i < zeilenAnzahlM; i++){
-					beta += (a[i][k]*a[i][k]);
+					beta += a[i][k]*a[i][k];
 				}
 			rhoK = Math.sqrt(beta);
 		// 15				
 			if(a[k][k] > 0){
-				rhoK = rhoK * -1.0;
+				rhoK = -rhoK;
 			}
 			rho[iteration] = rhoK;  
 		
@@ -85,14 +84,15 @@ public class Householder {
 			
 		// 6
 		   		for(int i = iteration + 1; i < zeilenAnzahlM; i++){
-		   			a[i][k] = -(a[i][k] / rhoK);
+		   			a[i][k] /= -rhoK;
 		   		}
 		
 		// für j = k + 1..n
 		//s2
 		  
+		   	 j = k + 1;
 		   	s = 0.0;
-		    j = k + 1;
+		   
 		    
 		    // 8
 		
@@ -106,7 +106,7 @@ public class Householder {
 		// für i = k..m
 		   	// 11
 				for(int i = iteration; i < zeilenAnzahlM; i++){
-					a[i][j] = a[i][j] - (s * a[i][k]);
+					a[i][j] = a[i][j] - s * a[i][k];
 				
 				}
 		
