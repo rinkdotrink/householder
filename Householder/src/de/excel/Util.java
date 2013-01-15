@@ -1,5 +1,6 @@
 package de.excel;
 
+
 public class Util {
 
 	public static void ausgabe(int zeilenAnzahlM, int spaltenAnzahlN, Double[][] a) {
@@ -11,5 +12,5 @@ public class Util {
 		}
 		System.out.println(" ");
 	}
-	
+		
 }

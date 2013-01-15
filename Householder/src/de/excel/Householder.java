@@ -119,8 +119,18 @@ public class Householder {
 		if (getClass() != obj.getClass())
 			return false;
 		Householder other = (Householder) obj;
-		if (!Arrays.deepEquals(a, other.a))
+		if(!myDeepEqual(a, other.a))
 			return false;
 		return true;
+	}
+	
+	public boolean myDeepEqual(Double[][] d1, Double[][] d2) {
+		boolean isEqual = true;
+		for(int i = 0; i< d1.length;i++) {
+			for (int j = 0; j < d1[0].length;j++) {
+				isEqual = isEqual && Math.abs(d1[i][j] - d2[i][j]) < 0.1;
+			}
+		}
+		return isEqual;
 	}
 }
