@@ -89,8 +89,8 @@ public class Householder {
 		
 		// für j = k + 1..n
 		//s2
-		  
-		   	 j = k + 1;
+		  for(j = k + 1; j < spaltenAnzahlN; j++){ // das kam hinzu
+		   //	 j = k + 1;    // das wurde auskommentiert
 		   	s = 0.0;
 		   
 		    
@@ -113,8 +113,8 @@ public class Householder {
 		// das entfällt in der letzten Iteration
 				
 		
-		if(iteration < iterationenAnzahlL -1){
-			
+	//	if(iteration < iterationenAnzahlL -1){
+		if(j < spaltenAnzahlN-1){	
 					
 						s = 0.0;
 						j++;
@@ -131,6 +131,7 @@ public class Householder {
 						}		
 				
 		}
+		  }  // das kam hinzu
 		    	
 		for(int i_ = 0; i_ < zeilenAnzahlM; i_++){
 			for(int j_ = 0; j_ < spaltenAnzahlN; j_++){

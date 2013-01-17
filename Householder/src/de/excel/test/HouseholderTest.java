@@ -1,10 +1,12 @@
-package de.excel.test;
+package src.de.excel.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.excel.Householder;
+import src.de.excel.Householder;
+
+
 
 public class HouseholderTest {
 
@@ -23,7 +25,7 @@ public class HouseholderTest {
 		a[2][0] = 2.0;
 		a[2][1] = 1.0;
 		a[2][2] = 2.0;
-
+		
 		r[0][0] = -3.0;
 		r[0][1] = 0.0;
 		r[0][2] = 0.0;
@@ -37,6 +39,8 @@ public class HouseholderTest {
 		actual = new Householder(a);
 		actual.compute();
 		expected = new Householder(r);
+		
+	//	assertTrue(actual.equals(expected));
 		assertEquals(expected, actual);
 	}
 	
@@ -107,6 +111,34 @@ public class HouseholderTest {
 		r[3][1] = 0.0;
 		r[3][2] = 0.0;
 		r[3][3] = -1.11;
+		
+		actual = new Householder(a);
+		actual.compute();
+		expected = new Householder(r);
+		assertEquals(expected, actual);
+
+	}
+	
+	
+	@Test
+	public void computeTest4() {
+		Double[][] a = new Double[3][2];
+		Double[][] r = new Double[2][2];
+
+		
+		a[0][0] = 1.0;
+		a[0][1] = 0.0;
+		a[1][0] = 1.0;
+		a[1][1] = 1.0;
+		a[2][0] = 1.0;
+		a[2][1] = 2.0;
+		
+		
+		r[0][0] = -1.7321;
+		r[0][1] = -1.7321;
+		r[1][0] = 0.0;
+		r[1][1] = -1.4142;
+		
 		
 		actual = new Householder(a);
 		actual.compute();

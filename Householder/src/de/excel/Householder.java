@@ -1,4 +1,4 @@
-package de.excel;
+package src.de.excel;
 
 import java.util.Arrays;
 
@@ -25,14 +25,17 @@ public class Householder {
 		bedingungRhoN = iterationenAnzahlL < spaltenAnzahlN;
 		iterate();
 		belegeR();
+		
 		Util.ausgabe(zeilenAnzahlM, spaltenAnzahlN, a);
 	}
 
 
 	public void iterate() {
 		for (int iteration = 0; iteration < iterationenAnzahlL; iteration++) {
+			
 			int k = iteration;
 			int j = 0;
+			
 			double beta = 0.0;
 			for (int i = iteration; i < zeilenAnzahlM; i++) {
 				beta += a[i][k] * a[i][k];
@@ -51,7 +54,8 @@ public class Householder {
 			}
 			// fï¿½r j = k + 1..n
 			// s2
-			j = k + 1;
+		//	j = k + 1;
+			 for(j = k + 1; j < spaltenAnzahlN; j++){ // das kam hinzu
 			s = 0.0;
 			// 8
 			summenProdukt(iteration, k, j);
@@ -62,8 +66,10 @@ public class Householder {
 			for (int i = iteration; i < zeilenAnzahlM; i++) {
 				a[i][j] -= s * a[i][k];
 			}
-			// das entfï¿½llt in der letzten Iteration
-			if (iteration < iterationenAnzahlL - 1) {
+			// das entfällt in der letzten Iteration
+		//	if (iteration < iterationenAnzahlL - 1) {
+				if(j < spaltenAnzahlN-1){	
+				
 				s = 0.0;
 				j++;
 				summenProdukt(iteration, k, j);
@@ -73,6 +79,7 @@ public class Householder {
 					a[i][j] -= s * a[i][k];
 				}
 			}
+		}  // das kam hinzu
 			Util.ausgabe(zeilenAnzahlM, spaltenAnzahlN, a);
 		}
 	}
@@ -85,7 +92,7 @@ public class Householder {
 
 	public void belegeR() {
 		rho[iterationenAnzahlL] = a[zeilenAnzahlM - 1][spaltenAnzahlN - 1];
-		System.out.println("Ende2");
+		System.out.println("Ausgabe");
 		for (int i_ = 0; i_ < zeilenAnzahlM; i_++) {
 			for (int j_ = 0; j_ < spaltenAnzahlN; j_++) {
 				if (i_ == j_) {
