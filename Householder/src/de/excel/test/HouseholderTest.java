@@ -144,7 +144,76 @@ public class HouseholderTest {
 		actual.compute();
 		expected = new Householder(r);
 		assertEquals(expected, actual);
+		
+		
 
 	}
+	
+	@Test
+	public void summenproduktTest1() {
+		
+		a[0][0] = 1.0;
+		a[0][1] = 2.0;
+		a[0][2] = 2.0;
+		a[1][0] = 2.0;
+		a[1][1] = -2.0;
+		a[1][2] = -3.0;
+		a[2][0] = 2.0;
+		a[2][1] = 1.0;
+		a[2][2] = 2.0;
+		
+		Householder householder = new Householder(a);
+		
+		double s = householder.summenProdukt(0,0,2);	
+		
+		assertEquals(s, 0.0, 0.1);
+		
+		
+	}
+	
+	@Test
+	public void summenproduktTest2() {
+		
+		a[0][0] = 1.0;
+		a[0][1] = 2.0;
+		a[0][2] = 2.0;
+		a[1][0] = 2.0;
+		a[1][1] = -2.0;
+		a[1][2] = -3.0;
+		a[2][0] = 2.0;
+		a[2][1] = 1.0;
+		a[2][2] = 2.0;
+		
+		Householder householder = new Householder(a);
+		
+		double s = householder.summenProdukt(0,0,1);	
+		
+		assertEquals(s, 0.0, 0.1);
+		
+		
+	}
+	
+	@Test
+	public void summenproduktTest3() {
+		
+		a[0][0] = 1.0;
+		a[0][1] = 2.0;
+		a[0][2] = 2.0;
+		a[1][0] = 2.0;
+		a[1][1] = -2.0;
+		a[1][2] = -3.0;
+		a[2][0] = 2.0;
+		a[2][1] = 1.0;
+		a[2][2] = 2.0;
+		
+		Householder householder = new Householder(a);
+		
+		double s = householder.summenProdukt(0,0,0);	
+		
+		assertEquals(s, 9.0, 0.1);
+		
+		
+	}
+	
 
 }

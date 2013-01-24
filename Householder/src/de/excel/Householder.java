@@ -52,42 +52,45 @@ public class Householder {
 			for (int i = iteration + 1; i < zeilenAnzahlM; i++) {
 				a[i][k] /= -rhoK;
 			}
-			// fï¿½r j = k + 1..n
+			// für j = k + 1..n
 			// s2
 		//	j = k + 1;
-			 for(j = k + 1; j < spaltenAnzahlN; j++){ // das kam hinzu
+			 for(j = k + 1; j < spaltenAnzahlN; j++){
 			s = 0.0;
 			// 8
-			summenProdukt(iteration, k, j);
+			
+			s = summenProdukt(iteration, k, j);
 			// 9
 			s = s / a[k][k];
-			// fï¿½r i = k..m
+			// für i = k..m
 			// 11
 			for (int i = iteration; i < zeilenAnzahlM; i++) {
 				a[i][j] -= s * a[i][k];
 			}
 			// das entfällt in der letzten Iteration
-		//	if (iteration < iterationenAnzahlL - 1) {
+		
 				if(j < spaltenAnzahlN-1){	
 				
 				s = 0.0;
 				j++;
-				summenProdukt(iteration, k, j);
+				
+				s = summenProdukt(iteration, k, j);
 				s = s / a[k][k]; // 1,5
 				System.out.println("s3: " + s);
 				for (int i = iteration; i < zeilenAnzahlM; i++) {
 					a[i][j] -= s * a[i][k];
 				}
 			}
-		}  // das kam hinzu
+		}  
 			Util.ausgabe(zeilenAnzahlM, spaltenAnzahlN, a);
 		}
 	}
 
-	private void summenProdukt(int iteration, int k, int j) {
+	public double summenProdukt(int iteration, int k, int j) {
 		for (int i = iteration; i < zeilenAnzahlM; i++) {
 			s += a[i][k] * a[i][j];
 		}
+		return s;
 	}
 
 	public void belegeR() {
